@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>File Upload</h1>
+
+    <div class="upload-area" id="dropZone">
+      <div class="upload-icon">📁</div>
+      <p>Drag & drop files here</p>
+      <p class="sub">or click to browse</p>
+      <p class="sub">PDF, CSV, XLSX, TXT, JSON — up to 50MB</p>
+      <input type="file" id="fileInput" multiple accept=".pdf,.csv,.xlsx,.xls,.txt,.json" hidden>
+    </div>
+
+    <div class="upload-controls">
+      <select id="projectSelect">
+        <option value="general">General</option>
+        <option value="delayguard">DelayGuard</option>
+        <option value="helmhq">HelmHQ</option>
+        <option value="supportbase">SupportBase</option>
+        <option value="shipping-intelligence">Shipping Intelligence</option>
+        <option value="inbound-tracker">Inbound Tracker</option>
+        <option value="box-optimizer">Box Optimizer</option>
+        <option value="email-lead-enrichment">Email Lead Enrichment</option>
+        <option value="keel-advisors">KEEL Advisors</option>
+      </select>
+      <button id="uploadBtn" disabled>Upload Files</button>
+    </div>
+
+    <div id="uploadProgress" class="progress-bar" hidden>
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div id="pendingFiles" class="pending-files"></div>
+
+    <div class="files-section">
+      <div class="files-header">
+        <h2>Uploaded Files</h2>
+        <div class="filters">
+          <select id="filterProject">
+            <option value="">All Projects</option>
+          </select>
+          <input type="text" id="searchInput" placeholder="Search files...">
+        </div>
+      </div>
+      <div id="fileList" class="file-list"></div>
+    </div>
+  </div>
+
+  <div id="previewModal" class="modal" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="previewTitle"></h3>
+        <button class="close-btn" id="closePreview">&times;</button>
+      </div>
+      <div id="previewBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
