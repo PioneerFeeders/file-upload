@@ -31,3 +31,7 @@ Standalone file upload and document storage service for Pioneer Feeders.
 - Needs a Postgres database
 - Needs a volume mounted at `/data/uploads`
 - Set `UPLOAD_DIR=/data/uploads`
+
+## Related projects
+
+Standalone utility — not wired into the Pioneer Feeders data pipeline. Nothing depends on it and it depends on nothing. If you need file/media handling inside a real product, look at how the existing apps already do it (for example, HelmHQ's SOP proof-photo uploads or keel-inventory's item photos) before extending this.
