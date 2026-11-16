@@ -31,3 +31,18 @@ Standalone file upload and document storage service for Pioneer Feeders.
 - Needs a Postgres database
 - Needs a volume mounted at `/data/uploads`
 - Set `UPLOAD_DIR=/data/uploads`
+
+## Related projects
+
+Standalone utility — not wired into the Pioneer Feeders data pipeline. Nothing depends on it and it depends on nothing. If you need file/media handling inside a real product, look at how the existing apps already do it (for example, HelmHQ's SOP proof-photo uploads or keel-inventory's item photos) before extending this.
+
+## Schema changes = ontology changes (rule for every repo, Justin 2026-11-16)
+
+Any new table, column or enum value is not done until all five are done (say which in the reply):
+1. **Describe it** where it is defined: a comment line right above each Prisma field / Drizzle column, or `COMMENT ON COLUMN` for raw SQL. Store meaning in real columns, not in free-text notes.
+2. **OKF docs**: if this repo has `scripts/okf-generate.mjs`, run `npm run okf:build` and commit `okf/` with the change.
+3. **Read access**: grant the new columns/tables to `keel_readonly` on the app database (never secret or password columns).
+4. **KEEL mirror**: `railway run -s keel-db python3 /root/tools/keel-live-tables.py <app>` so `live_<app>` in KEEL has the new columns.
+5. **Ontology**: in `/opt/auto-ontology` run `docker compose restart ingestion-service`, then `python3 /root/tools/ontology-describe.py <schema.table> ...` to copy the descriptions in as certified.
+
+Full checklist: memory `feedback-schema-ontology-sync.md` on the VPS.
