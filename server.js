@@ -40,6 +40,8 @@ const upload = multer({
   }
 });
 
+app.use(require('./access-gate').accessGate()); // before everything, incl. the static frontend
+app.get('/api/health', (req, res) => res.json({ ok: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
