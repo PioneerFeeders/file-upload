@@ -1,3 +1,16 @@
 node_modules/
 uploads/
 .env
+
+# Never commit key files or their backups (added 2026-11-22; .env.example stays committed)
+.env
+.env.local
+.env.*.local
+.env.bak*
+.env.backup*
+.env*.bak
+.env.old
+.env.save
+credentials.json
+token.json
+*.pem
